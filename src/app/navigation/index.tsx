@@ -1,23 +1,19 @@
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-
-import DriversListScreen from '@screens/driversListScreen';
-
-export type RootStackParamList = {
-  DriversList: undefined;
-  DriverDetails: { driverId: string };
-  DriverRaces: { driverId: string };
-};
+import { NavigationContainer } from '@react-navigation/native';
+import { DriverDetailsScreen } from 'screens/driverDetailsScreen';
+import { DriversListScreen } from 'screens/driversListScreen';
+import { RootStackParamList } from './types';
+import DriverResultsScreen from '@screens/driverResultScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export const Navigation = () => {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="DriversList">
-        <Stack.Screen name="DriversList" component={DriversListScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  );
-};
+export const Navigation = () => (
+  <NavigationContainer>
+    <Stack.Navigator initialRouteName="DriversList">
+      <Stack.Screen name="DriversList" component={DriversListScreen} />
+      <Stack.Screen name="DriverDetails" component={DriverDetailsScreen} />
+      <Stack.Screen name="DriverResults" component={DriverResultsScreen} />
+    </Stack.Navigator>
+  </NavigationContainer>
+);

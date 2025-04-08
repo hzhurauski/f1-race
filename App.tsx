@@ -1,13 +1,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { store } from 'app/providers/store';
-import { DriversListScreen } from './src/screens/driversListScreen';
+import { Navigation } from 'app/navigation';
+
+// The suggested api has expired. It was decided to use a new version - “http://api.jolpi.ca/ergast” - in its place
 
 export default function App() {
   return (
     <Provider store={store}>
-      asdasdsad
-      <DriversListScreen />
+      <Navigation />
     </Provider>
   );
 }
