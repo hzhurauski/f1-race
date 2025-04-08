@@ -28,7 +28,7 @@ const driverSlice = createSlice({
       state.page = 0;
       state.total = 0;
       state.hasMore = true;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder

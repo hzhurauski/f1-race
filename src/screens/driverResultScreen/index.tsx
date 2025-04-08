@@ -24,8 +24,12 @@ import DriverResultsTable from 'features/drivers/ui/DriverResultsTable/DriverRes
 import { fetchDriverResults } from 'entities/driverResult/model/thunks.ts';
 import { setPage } from 'entities/driver/model/slice.ts';
 import { PaginationControls } from 'shared/components/PaginationControls/PaginationControls';
+import { ScreenNames } from 'shared/const';
 
-type DriverDetailsRouteProp = RouteProp<RootStackParamList, 'DriverResults'>;
+type DriverDetailsRouteProp = RouteProp<
+  RootStackParamList,
+  ScreenNames.DRIVER_RESULTS
+>;
 
 const DriverResultsScreen = () => {
   const dispatch = useAppDispatch();

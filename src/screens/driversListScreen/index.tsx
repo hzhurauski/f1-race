@@ -25,10 +25,11 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from 'app/navigation/types';
 import { PaginationControls } from 'shared/components/PaginationControls/PaginationControls';
 import { styles } from './styles';
+import { ScreenNames } from 'shared/const';
 
 type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'DriversList'
+  ScreenNames.DRIVERS_LIST
 >;
 
 export const DriversListScreen = () => {
@@ -67,12 +68,12 @@ export const DriversListScreen = () => {
   const handleSelectDriver = (id: string) => {
     const driver = drivers.find((d) => d.driverId === id);
     if (driver) {
-      navigation.navigate('DriverDetails', { driver });
+      navigation.navigate(ScreenNames.DRIVER_DETAILS, { driver });
     }
   };
 
   const handleViewResults = (driverId: string) => {
-    navigation.navigate('DriverResults', { driverId });
+    navigation.navigate(ScreenNames.DRIVER_RESULTS, { driverId });
   };
 
   return (
