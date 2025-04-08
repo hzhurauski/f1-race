@@ -1,6 +1,15 @@
 import { RootState } from '@app/providers/store';
 
-export const getDrivers = (state: RootState) => state.driver.data;
-export const getDriversLoading = (state: RootState) => state.driver.loading;
-export const getDriversError = (state: RootState) => state.driver.error;
-export const getDriversPage = (state: RootState) => state.driver.page;
+export const selectDrivers = (state: RootState) => state.driver.data;
+export const selectDriversLoading = (state: RootState) => state.driver.loading;
+export const selectDriversError = (state: RootState) => state.driver.error;
+export const selectDriversPage = (state: RootState) => state.driver.page;
+export const selectDriversLimit = (state: RootState) => state.driver.limit;
+export const selectDriversTotal = (state: RootState) => state.driver.total;
+export const selectDriversHasMore = (state: RootState) => state.driver.hasMore;
+
+export const selectTotalPages = (state: RootState) => {
+  const total = selectDriversTotal(state);
+  const limit = selectDriversLimit(state);
+  return Math.ceil(total / limit);
+};

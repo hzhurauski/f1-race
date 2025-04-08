@@ -10,3 +10,7 @@ export const selectDriverResultsError = (state: RootState) =>
   state.driverResults.error;
 
 export const getDriversPage = (state: RootState) => state.driverResults.page;
+
+export const getDriversLimit = (state: RootState) => state.driverResults.limit;
+
+export const getDriversTotal = (state: RootState) => state.driverResults.total;

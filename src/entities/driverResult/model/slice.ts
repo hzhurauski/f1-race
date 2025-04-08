@@ -7,6 +7,9 @@ const initialState: DriverResultState = {
   loading: false,
   error: null,
   page: 0,
+  limit: 30,
+  total: 0,
+  hasMore: true,
 };
 
 const driverResultSlice = createSlice({
@@ -16,6 +19,16 @@ const driverResultSlice = createSlice({
     setPage(state, action: PayloadAction<number>) {
       state.page = action.payload;
     },
+    setLimit(state, action: PayloadAction<number>) {
+      state.limit = action.payload;
+      state.page = 0;
+    },
+    resetResults(state) {
+      state.results = [];
+      state.page = 0;
+      state.total = 0;
+      state.hasMore = true;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -24,8 +37,10 @@ const driverResultSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDriverResults.fulfilled, (state, action) => {
-        state.results = action.payload;
         state.loading = false;
+        state.results = action.payload.results;
+        state.total = action.payload.total;
+        state.hasMore = (state.page + 1) * state.limit < action.payload.total;
       })
       .addCase(fetchDriverResults.rejected, (state, action) => {
         state.error = action.error.message ?? 'Unknown error';
@@ -34,5 +49,5 @@ const driverResultSlice = createSlice({
   },
 });
 
-export const { setPage } = driverResultSlice.actions;
+export const { setPage, setLimit, resetResults } = driverResultSlice.actions;
 export const driverResultReducer = driverResultSlice.reducer;

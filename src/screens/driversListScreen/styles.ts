@@ -9,30 +9,29 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  pagination: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 16,
-    borderTopWidth: 1,
-    borderTopColor: '#eee',
-  },
-  button: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    backgroundColor: '#007AFF',
-    borderRadius: 4,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  pageText: {
-    fontWeight: 'bold',
+  loader: {
+    marginTop: 20,
   },
   error: {
     color: 'red',
     textAlign: 'center',
     marginVertical: 16,
+  },
+  limitSelector: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 8,
+    gap: 16,
+  },
+  limitOption: {
+    padding: 8,
+    color: '#007AFF',
+  },
+  activeLimit: {
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#007AFF',
+    borderRadius: 4,
   },
 });

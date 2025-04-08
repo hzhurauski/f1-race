@@ -1,12 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { Driver } from './types';
 import { getDrivers } from 'entities/driver/api/getDrivers.ts';
 
-export const fetchDrivers = createAsyncThunk<Driver[], number>(
+export const fetchDrivers = createAsyncThunk(
   'driver/fetchDrivers',
-  async (page, thunkAPI) => {
+  async ({ page, limit }: { page: number; limit: number }, thunkAPI) => {
     try {
-      return await getDrivers(page);
+      const offset = page * limit;
+      return await getDrivers(limit, offset);
     } catch (err: any) {
       return thunkAPI.rejectWithValue(err.message);
     }

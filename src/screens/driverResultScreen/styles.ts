@@ -9,6 +9,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  loader: {
+    marginTop: 20,
+  },
   pagination: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -22,6 +25,11 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     backgroundColor: '#007AFF',
     borderRadius: 4,
+    minWidth: 80,
+    alignItems: 'center',
+  },
+  disabledButton: {
+    backgroundColor: '#cccccc',
   },
   buttonText: {
     color: 'white',
@@ -34,5 +42,22 @@ export const styles = StyleSheet.create({
     color: 'red',
     textAlign: 'center',
     marginVertical: 16,
+  },
+  limitSelector: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 8,
+    gap: 16,
+  },
+  limitOption: {
+    padding: 8,
+    color: '#007AFF',
+  },
+  activeLimit: {
+    fontWeight: 'bold',
+    color: 'white',
+    backgroundColor: '#007AFF',
+    borderRadius: 4,
   },
 });

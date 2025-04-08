@@ -4,13 +4,14 @@ import { RootStackParamList } from 'app/navigation/types';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
 import {
   getDriversPage,
+  getDriversLimit,
+  getDriversTotal,
   selectDriverResults,
   selectDriverResultsError,
   selectDriverResultsLoading,
 } from 'entities/driverResult/model/selectors.ts';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
-import { fetchDriverResults } from 'entities/driverResult/model/thunks.ts';
-import { setPage } from 'entities/driverResult/model/slice.ts';
+import { setLimit } from 'entities/driverResult/model/slice';
 import { styles } from './styles.ts';
 import {
   ActivityIndicator,
@@ -20,6 +21,9 @@ import {
   View,
 } from 'react-native';
 import DriverResultsTable from 'features/drivers/ui/DriverResultsTable/DriverResultsTable.tsx';
+import { fetchDriverResults } from 'entities/driverResult/model/thunks.ts';
+import { setPage } from 'entities/driver/model/slice.ts';
+import { PaginationControls } from 'shared/components/PaginationControls/PaginationControls';
 
 type DriverDetailsRouteProp = RouteProp<RootStackParamList, 'DriverResults'>;
 
@@ -27,41 +31,76 @@ const DriverResultsScreen = () => {
   const dispatch = useAppDispatch();
   const route = useRoute<DriverDetailsRouteProp>();
   const { driverId } = route.params;
+
   const page = useAppSelector(getDriversPage);
+  const limit = useAppSelector(getDriversLimit);
+  const total = useAppSelector(getDriversTotal);
   const results = useAppSelector(selectDriverResults);
   const isLoading = useAppSelector(selectDriverResultsLoading);
   const error = useAppSelector(selectDriverResultsError);
 
-  useEffect(() => {
-    dispatch(fetchDriverResults(driverId));
-  }, [dispatch, driverId]);
+  const totalPages = Math.ceil(total / limit);
+  const hasMore = page < totalPages - 1;
 
-  const nextPage = () => dispatch(setPage(page + 1));
-  const prevPage = () => dispatch(setPage(Math.max(page - 1, 0)));
+  useEffect(() => {
+    dispatch(fetchDriverResults({ driverId, page, limit }));
+  }, [dispatch, driverId, page, limit]);
+
+  const nextPage = () => {
+    if (hasMore) {
+      dispatch(setPage(page + 1));
+    }
+  };
+
+  const prevPage = () => {
+    dispatch(setPage(Math.max(page - 1, 0)));
+  };
+
+  const handleLimitChange = (newLimit: number) => {
+    dispatch(setLimit(newLimit));
+    dispatch(setPage(0));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        {isLoading && <ActivityIndicator size="large" />}
-        {error && <Text style={styles.error}>{error}</Text>}
+        {isLoading && page === 0 ? (
+          <ActivityIndicator size="large" style={styles.loader} />
+        ) : error ? (
+          <Text style={styles.error}>{error}</Text>
+        ) : (
+          <>
+            <DriverResultsTable results={results} />
 
-        {!isLoading && <DriverResultsTable results={results} />}
+            <PaginationControls
+              page={page}
+              totalPages={totalPages}
+              onNext={nextPage}
+              onPrev={prevPage}
+              canNext={hasMore}
+              canPrev={page > 0}
+            />
 
-        <View style={styles.pagination}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={prevPage}
-            disabled={page === 0}
-          >
-            <Text style={styles.buttonText}>Previous</Text>
-          </TouchableOpacity>
-
-          <Text style={styles.pageText}>Page {page + 1}</Text>
-
-          <TouchableOpacity style={styles.button} onPress={nextPage}>
-            <Text style={styles.buttonText}>Next</Text>
-          </TouchableOpacity>
-        </View>
+            <View style={styles.limitSelector}>
+              <Text>Items per page:</Text>
+              {[10, 20, 30].map((item) => (
+                <TouchableOpacity
+                  key={item}
+                  onPress={() => handleLimitChange(item)}
+                >
+                  <Text
+                    style={[
+                      styles.limitOption,
+                      limit === item && styles.activeLimit,
+                    ]}
+                  >
+                    {item}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </>
+        )}
       </View>
     </SafeAreaView>
   );
