@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { DriverDetailsScreen } from 'screens/driverDetailsScreen';
 import { DriversListScreen } from 'screens/driversListScreen';
 import { RootStackParamList } from './types';
-import DriverResultsScreen from '@screens/driverResultScreen';
+import DriverResultsScreen from 'screens/driverResultScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

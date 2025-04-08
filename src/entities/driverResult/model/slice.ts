@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchDriverResults } from '@entities/driverResult/model/thunks.ts';
-import { DriverResultState } from '@entities/driverResult/model/types.ts';
+import { fetchDriverResults } from 'entities/driverResult/model/thunks.ts';
+import { DriverResultState } from 'entities/driverResult/model/types.ts';
 
 const initialState: DriverResultState = {
   results: [],

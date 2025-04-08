@@ -1,4 +1,4 @@
-import { RootState } from '@app/providers/store';
+import { RootState } from 'app/providers/store';
 
 export const selectDriverResults = (state: RootState) =>
   state.driverResults.results;

@@ -51,4 +51,16 @@ export const styles = StyleSheet.create({
   resultValue: {
     flex: 1,
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
+  },
+  cell: {
+    flex: 2,
+    fontSize: 14,
+    paddingHorizontal: 4,
+  },
 });

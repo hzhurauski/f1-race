@@ -1,13 +1,9 @@
-export interface Result {
-  number: string;
-  position: string;
-}
-
 export interface DriverResult {
   season: string;
   round: string;
   raceName: string;
-  Results: Result[];
+  number: string;
+  position: string;
 }
 
 export interface DriverResultState {

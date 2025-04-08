@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Driver } from './types';
-import { getDrivers } from '@entities/driver/api/getDrivers.ts';
+import { getDrivers } from 'entities/driver/api/getDrivers.ts';
 
 export const fetchDrivers = createAsyncThunk<Driver[], number>(
   'driver/fetchDrivers',

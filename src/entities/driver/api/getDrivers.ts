@@ -1,4 +1,4 @@
-import { api } from '@shared/api';
+import { api } from 'shared/api';
 import { Driver } from '../model/types';
 
 export const getDrivers = async (

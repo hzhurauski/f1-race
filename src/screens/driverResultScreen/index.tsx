@@ -1,16 +1,16 @@
 import React, { useEffect } from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { RootStackParamList } from '@app/navigation/types';
-import { useAppSelector } from '@shared/hooks/useAppSelector';
+import { RootStackParamList } from 'app/navigation/types';
+import { useAppSelector } from 'shared/hooks/useAppSelector';
 import {
   getDriversPage,
   selectDriverResults,
   selectDriverResultsError,
   selectDriverResultsLoading,
-} from '@entities/driverResult/model/selectors.ts';
-import { useAppDispatch } from '@shared/hooks/useAppDispatch';
-import { fetchDriverResults } from '@entities/driverResult/model/thunks.ts';
-import { setPage } from '@entities/driverResult/model/slice.ts';
+} from 'entities/driverResult/model/selectors.ts';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { fetchDriverResults } from 'entities/driverResult/model/thunks.ts';
+import { setPage } from 'entities/driverResult/model/slice.ts';
 import { styles } from './styles.ts';
 import {
   ActivityIndicator,
@@ -19,7 +19,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import DriverResultsTable from '@features/drivers/ui/DriverResultsTable/DriverResultsTable.tsx';
+import DriverResultsTable from 'features/drivers/ui/DriverResultsTable/DriverResultsTable.tsx';
 
 type DriverDetailsRouteProp = RouteProp<RootStackParamList, 'DriverResults'>;
 
