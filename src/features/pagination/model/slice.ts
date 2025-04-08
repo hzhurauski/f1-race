@@ -1,14 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface PaginationState {
-  page: number;
-  limit: number;
-  total: number;
-}
-
-interface PaginationSliceState {
-  [key: string]: PaginationState;
-}
+import { PaginationSliceState } from './types.ts';
 
 const initialState: PaginationSliceState = {};
 

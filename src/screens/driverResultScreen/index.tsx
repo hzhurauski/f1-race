@@ -9,6 +9,7 @@ import {
   selectDriverResults,
   selectDriverResultsError,
   selectDriverResultsLoading,
+  selectDriversResultHasMore,
 } from 'entities/driverResult/model/selectors.ts';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { setLimit } from 'entities/driverResult/model/slice';
@@ -22,7 +23,7 @@ import {
 } from 'react-native';
 import DriverResultsTable from 'features/drivers/ui/DriverResultsTable/DriverResultsTable.tsx';
 import { fetchDriverResults } from 'entities/driverResult/model/thunks.ts';
-import { setPage } from 'entities/driver/model/slice.ts';
+import { setPage } from 'entities/driverResult/model/slice.ts';
 import { PaginationControls } from 'shared/components/PaginationControls/PaginationControls';
 import { ScreenNames } from 'shared/const';
 
@@ -42,9 +43,9 @@ const DriverResultsScreen = () => {
   const results = useAppSelector(selectDriverResults);
   const isLoading = useAppSelector(selectDriverResultsLoading);
   const error = useAppSelector(selectDriverResultsError);
+  const hasMore = useAppSelector(selectDriversResultHasMore);
 
   const totalPages = Math.ceil(total / limit);
-  const hasMore = page < totalPages - 1;
 
   useEffect(() => {
     dispatch(fetchDriverResults({ driverId, page, limit }));
@@ -68,7 +69,7 @@ const DriverResultsScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
-        {isLoading && page === 0 ? (
+        {isLoading ? (
           <ActivityIndicator size="large" style={styles.loader} />
         ) : error ? (
           <Text style={styles.error}>{error}</Text>

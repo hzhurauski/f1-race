@@ -1,4 +1,4 @@
-import { Driver } from '@entities/driver/model/types';
+import { Driver } from 'entities/driver/model/types';
 
 import { ScreenNames } from 'shared/const';
 

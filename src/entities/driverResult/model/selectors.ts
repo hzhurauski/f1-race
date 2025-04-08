@@ -14,3 +14,6 @@ export const getDriversPage = (state: RootState) => state.driverResults.page;
 export const getDriversLimit = (state: RootState) => state.driverResults.limit;
 
 export const getDriversTotal = (state: RootState) => state.driverResults.total;
+
+export const selectDriversResultHasMore = (state: RootState) =>
+  state.driverResults.hasMore;

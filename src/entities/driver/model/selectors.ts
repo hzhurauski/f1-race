@@ -1,4 +1,4 @@
-import { RootState } from '@app/providers/store';
+import { RootState } from 'app/providers/store';
 
 export const selectDrivers = (state: RootState) => state.driver.data;
 export const selectDriversLoading = (state: RootState) => state.driver.loading;

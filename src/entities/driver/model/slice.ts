@@ -21,7 +21,7 @@ const driverSlice = createSlice({
     },
     setLimit(state, action: PayloadAction<number>) {
       state.limit = action.payload;
-      state.page = 0; // Сброс страницы при изменении лимита
+      state.page = 0;
     },
     resetDrivers(state) {
       state.data = [];
