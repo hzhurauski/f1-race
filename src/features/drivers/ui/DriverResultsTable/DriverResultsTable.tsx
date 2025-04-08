@@ -18,14 +18,6 @@ const DriverResultsTable: React.FC<DriverResultsTableProps> = ({ results }) => {
     </View>
   );
 
-  if (!results || results.length === 0) {
-    return (
-      <View style={styles.emptyContainer}>
-        <Text>No results available for this driver</Text>
-      </View>
-    );
-  }
-
   return (
     <FlatList
       data={results}

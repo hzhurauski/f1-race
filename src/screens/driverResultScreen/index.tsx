@@ -45,7 +45,7 @@ const DriverResultsScreen = () => {
         {isLoading && <ActivityIndicator size="large" />}
         {error && <Text style={styles.error}>{error}</Text>}
 
-        {!isLoading && <DriverResultsTable {...results} />}
+        {!isLoading && <DriverResultsTable results={results} />}
 
         <View style={styles.pagination}>
           <TouchableOpacity
