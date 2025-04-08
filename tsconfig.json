@@ -12,11 +12,5 @@
       "@screens/*": ["screens/*"]
     }
   },
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "allowJs": true,
-    "noEmit": true,
-    "jsx": "react-native",
 }
 
