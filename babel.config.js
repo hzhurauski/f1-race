@@ -11,7 +11,7 @@ module.exports = {
           '@entities': './src/entities',
           '@features': './src/features',
           '@widgets': './src/widgets',
-          '@pages': './src/pages',
+          '@pages': './src/screens',
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
       },

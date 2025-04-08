@@ -1,6 +1,7 @@
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
+    "types": ["node"],
     "baseUrl": "./src",
     "paths": {
       "@app/*": ["app/*"],
@@ -8,14 +9,14 @@
       "@entities/*": ["entities/*"],
       "@features/*": ["features/*"],
       "@widgets/*": ["widgets/*"],
-      "@pages/*": ["pages/*"]
-    },
+      "@screens/*": ["screens/*"]
+    }
+  },
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowJs": true,
     "noEmit": true,
     "jsx": "react-native",
-    "types": ["react", "react-native"]
-  }
 }
+

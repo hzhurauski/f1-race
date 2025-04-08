@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { driverReducer } from '@entities/driver/model/slice.ts';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    driver: driverReducer,
+  },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
